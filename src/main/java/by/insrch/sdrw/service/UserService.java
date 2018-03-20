@@ -31,12 +31,12 @@ public class UserService  {
         user3.setEmail("e.kubar@gmail.com");
         user3.setSurname("kubar");
 
-        note1.setName("первый");
+        note1.setName("first");
         //note1.setText("it provides implementations of more ...");
-        note1.setText("The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements. Some collections allow duplicate elements and others do not. Some are ordered and others unordered. The JDK does not provide any direct implementations of this interface: it provides implementations of more ...");
+        note1.setText("The root interface ine any direct implementations of this interface: it provides implementations of more ...");
         note2.setName("second");
         //note2.setText("полностью:  https://news.tut.by/culture/580405.html");
-        note2.setText("Я очень благодарна Алексею Навальному за то, что он сделал такое видео. Теперь я могу рассказать всем, как все было на самом деле на этой яхте. Раньше я боялась это сделать, потому что я понимаю, какие это люди и чем это чревато для меня… На самом деле это было групповое изнасилование», — заявила девушка Читать полностью:  https://news.tut.by/culture/580405.html");
+        note2.setText("Дамы и господа из Орды и Альянса, пора привести свой гардероб в порядок и приготовиться к необычной битве. В ходе события «Наденьте это немедленно!» вы сможете узнать");
 
         userRepository.save(user1);
         userRepository.save(user2);

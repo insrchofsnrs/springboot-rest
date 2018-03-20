@@ -2,6 +2,7 @@ package by.insrch.sdrw.controller;
 
 import by.insrch.sdrw.dao.NoteRepository;
 import by.insrch.sdrw.dao.UserRepository;
+import by.insrch.sdrw.pojo.Note;
 import by.insrch.sdrw.pojo.User;
 import by.insrch.sdrw.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api")
 public class TestControllerRest {
 
     @Autowired
@@ -20,24 +21,19 @@ public class TestControllerRest {
     @Autowired
     private NoteRepository noteRepository;
 
-    @Autowired
-    private UserService userService;
 
-    @GetMapping("/")
-    public ResponseEntity<?> getLists(){
+    @GetMapping("/note")
+    public ResponseEntity<Note> getLists(){
+        Note note = noteRepository.findOne(1L);
 
-        userService.addusers();
-
-        List listA = userRepository.findAll();
-        List listB = noteRepository.findAll();
-        List result = new ArrayList();
-        result.add(listA);
-        result.add(listB);
-        return new ResponseEntity<>(result,  HttpStatus.OK);
-
+        return new ResponseEntity<>(note,  HttpStatus.OK);
     }
 
-
+    @GetMapping("/user")
+    public ResponseEntity<User> getUser(){
+        User user = userRepository.findOne(2l);
+        return  new ResponseEntity<>(user, HttpStatus.OK);
+    }
 
     /*@GetMapping("/")
     public List<User> users(){
@@ -45,10 +41,7 @@ public class TestControllerRest {
         return userRepository.findAll();
     }*/
 
-    @PostMapping("/")
-    public User createUser(@RequestBody User user){
-        return userRepository.save(user);
-    }
+
 
 
     @GetMapping("/second")

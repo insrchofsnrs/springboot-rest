@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class Note implements Serializable {
 
     @Id
-    @JsonProperty("name")
+   // @JsonProperty("name")
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
