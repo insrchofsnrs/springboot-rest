@@ -1,26 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>test</title>
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css"
           href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
-
 </head>
 
 
 <body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">insrchofsnrs</a>
+        </div>
+    </div>
+</nav>
+
+
+
 <script src="js/main.js"></script>
-<p>ПРИВЕТ</p>
+<table>
+    <th:block th:each="data : ${data}">
+        <tr>
+            <td th:text="${data.name}">...</td>
+            <td th:text="${data.email}">...</td>
+        </tr>
+        <tr>
+            <td colspan="2" th:text="${users.surname}">...</td>
+        </tr>
+    </th:block>
+</table>
+
 <div>
-    <p class="greeting-id">The ID is </p>
-    <p class="greeting-content">The content is </p>
+    <form class="form-inline" style="margin:20px 20px 20px 20px" id="add-user">
+        <div class="form-group">
+
+            <input type="text"  id="name" placeholder="Enter FirstName"/>
+        </div>
+        <div class="form-group">
+
+            <input type="text" id="surname" placeholder="Enter LastName"/>
+        </div>
+        <div class="form-group">
+
+            <input type="text"  id="email" placeholder="Enter e-mail"/>
+        </div>
+        <button type="submit"  class="btn btn-default" style="margin-left:20px; margin-right:5px">Submit</button>
+    </form>
 </div>
-<div>
-    <p class="user-id">The ID is </p>
-    <p class="user-content">The content is </p>
+<div class="col-sm-7" style="margin:20px 0px 20px 0px">
+    <button id="getAllUserId" type="button" class="btn btn-primary">Get All Customers</button>
+    <div id="getResultDiv" style="padding:20px 10px 20px 50px">
+        <ul class="list-group">
+        </ul>
+    </div>
 </div>
 </body>
 
