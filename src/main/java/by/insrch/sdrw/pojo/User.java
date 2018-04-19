@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
-@Table(name = "users")
+@Table(name = "user")
 public class User implements Serializable {
 
     @Id
@@ -19,8 +19,13 @@ public class User implements Serializable {
     private String name;
     private String surname;
     private String email;
+    private String password;
+    private int age;
+    private String phone;
+    private String address;
+
+
 
     /*@OneToMany(mappedBy = "id")
     private Note note;*/
-
 }
