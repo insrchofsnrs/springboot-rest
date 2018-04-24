@@ -10,12 +10,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "note")
 public class Note implements Serializable {
 
     @Id
-   // @JsonProperty("name")
+    // @JsonProperty("name")
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 

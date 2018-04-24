@@ -1,14 +1,9 @@
-
-
-
-
 $(document).ready(function () {
     $('#add-user').submit(function (event) {
         event.preventDefault();
         ajaxPost();
-        var words = "- Customer with Id = " + i + ", firstname = " + user.name + ", lastName = " + user.surname + "email = "+user.email+"<br>";
+        var words = "- Customer with Id = " + i + ", firstname = " + user.name + ", lastName = " + user.surname + "email = " + user.email + "<br>";
         $('#getResultDiv .list-group').append(words);
-
 
 
         function ajaxPost() {
@@ -33,35 +28,34 @@ $(document).ready(function () {
 })
 
 
-    $( document ).ready(function() {
+$(document).ready(function () {
 
-        // GET REQUEST
-        $("#getAllUserId").click(function(event){
-            event.preventDefault();
-            ajaxGet();
+    // GET REQUEST
+    $("#getAllUserId").click(function (event) {
+        event.preventDefault();
+        ajaxGet();
 
+    });
+
+    // DO GET
+    function ajaxGet() {
+        $.ajax({
+            type: "GET",
+            url: window.location + "api/users",
+            success: function (data) {
+
+
+                $('#getResultDiv ul').empty();
+                /*var custList = "";*/
+                $.each(data, function (i, user) {
+                    var words = "- Customer with Id = " + i + ", firstname = " + user.name + ", lastName = " + user.surname + "email = " + user.email + "<br>";
+                    $('#getResultDiv .list-group').append(words)
+                });
+            },
+            error: function (e) {
+                $("#getResultDiv").html("<strong>Error</strong>");
+                console.log("ERROR: ", e);
+            }
         });
-
-        // DO GET
-        function ajaxGet(){
-            $.ajax({
-                type : "GET",
-                url : window.location + "api/users",
-                success: function(data){
-
-
-                        $('#getResultDiv ul').empty();
-                        /*var custList = "";*/
-                        $.each(data, function(i, user){
-                            var words = "- Customer with Id = " + i + ", firstname = " + user.name + ", lastName = " + user.surname + "email = "+user.email+"<br>";
-                            $('#getResultDiv .list-group').append(words)
-                        });
-                },
-                error : function(e) {
-                    $("#getResultDiv").html("<strong>Error</strong>");
-                    console.log("ERROR: ", e);
-                }
-            });
-        };
-    })
-
+    }
+})

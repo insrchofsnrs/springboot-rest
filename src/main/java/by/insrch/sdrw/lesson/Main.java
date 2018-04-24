@@ -8,22 +8,8 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
-    try {
-        FileReader reader = new FileReader("/home/milk/Downloads/words.txt");
-        FileWriter writer = new FileWriter("/home/milk/Downloads/words2.txt");
-        String text = "";
-        writer.write(text);
-        int c;
-        while((c=reader.read())!=-1){
-
-
-            writer.append((char)c);
-            writer.flush();
-        }
-
-    } catch (IOException e){
-
-        System.out.println(e.getMessage());
-    }
+        int a = 5;
+        a = a++ + ++a;
+        System.out.println(a);
     }
 }
