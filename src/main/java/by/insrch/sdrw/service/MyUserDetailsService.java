@@ -1,7 +1,7 @@
 package by.insrch.sdrw.service;
 
 import by.insrch.sdrw.dao.UserRepository;
-import by.insrch.sdrw.pojo.UserRole;
+import by.insrch.sdrw.pojo.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,27 +27,26 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         by.insrch.sdrw.pojo.User user = userRepository.findUserByEmail(email);
-        List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
+        List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
 
         return buildUserForAuthentication(user, authorities);
     }
 
     private User buildUserForAuthentication (by.insrch.sdrw.pojo.User user, List<GrantedAuthority> authorities){
-        return new User(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, authorities);
+        return new User(user.getEmail(), user.getPassword(), authorities);
     }
 
-    private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+    private List<GrantedAuthority> buildUserAuthority(Set<Role> roles) {
 
         Set<GrantedAuthority> setAuths = new HashSet<>();
 
         // Build user's authorities
-        for (UserRole userRole : userRoles) {
-            setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
+        for (Role role : roles) {
+            setAuths.add(new SimpleGrantedAuthority(role.getRole()));
         }
 
         List<GrantedAuthority> result = new ArrayList<>(setAuths);
 
         return result;
     }
-
 }

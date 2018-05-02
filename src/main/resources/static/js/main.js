@@ -10,9 +10,9 @@ $(document).ready(function () {
 
             // PREPARE FORM DATA
             var user = {
+                email: $('#email').val(),
                 name: $('#name').val(),
-                surname: $('#surname').val(),
-                email: $('#email').val()
+                password: $('#password').val()
             }
 
             // DO POST
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 $('#getResultDiv ul').empty();
                 /*var custList = "";*/
                 $.each(data, function (i, user) {
-                    var words = "- Customer with Id = " + i + ", firstname = " + user.name + ", lastName = " + user.surname + "email = " + user.email + "<br>";
+                    var words = "- User with Id = " + i + ", email = " + user.email + ", password = " + user.password + "name = " + user.name + "role= "+ user.role+"<br>";
                     $('#getResultDiv .list-group').append(words)
                 });
             },

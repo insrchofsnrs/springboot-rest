@@ -23,30 +23,22 @@
 
 <script src="js/main.js"></script>
 <table>
-    <th:block th:each="data : ${data}">
-        <tr>
-            <td th:text="${data.name}">...</td>
-            <td th:text="${data.email}">...</td>
-        </tr>
-        <tr>
-            <td colspan="2" th:text="${users.surname}">...</td>
-        </tr>
-    </th:block>
+    admin page
 </table>
 
 <div>
     <form class="form-inline" style="margin:20px 20px 20px 20px" id="add-user">
         <div class="form-group">
 
-            <input type="text"  id="email" placeholder="EMAIL"/>
+            <input type="text"  id="name" placeholder="Enter FirstName"/>
         </div>
         <div class="form-group">
 
-            <input type="text" id="password" placeholder="PASSWORD"/>
+            <input type="text" id="surname" placeholder="Enter LastName"/>
         </div>
         <div class="form-group">
 
-            <input type="text"  id="name" placeholder="NAME"/>
+            <input type="text"  id="email" placeholder="Enter e-mail"/>
         </div>
         <button type="submit"  class="btn btn-default" style="margin-left:20px; margin-right:5px">Submit</button>
     </form>

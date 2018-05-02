@@ -1,7 +1,10 @@
 package by.insrch.sdrw.controller;
 
 import by.insrch.sdrw.dao.UserRepository;
+import by.insrch.sdrw.exception.EmailExistsException;
 import by.insrch.sdrw.pojo.User;
+import by.insrch.sdrw.service.IUserService;
+import by.insrch.sdrw.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private IUserService iUserService;
 
 
 
@@ -37,9 +43,15 @@ public class UserController {
 
     @PostMapping("/users")
     public ResponseEntity<User> addUser (@RequestBody User user){
-        User newUser = userRepository.save(user);
-        // System.out.println(user);
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        try {
+            iUserService.registerNewUserAccount(user);
+            //System.out.println(newUser);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        } catch (EmailExistsException e) {
+            e.printStackTrace();
+        } return new ResponseEntity<>(user, HttpStatus.CONFLICT);
+
+
     }
 
 }

@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
                 .antMatchers("/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/*").access("hasRole('ROLE_USER')")
                 .and().formLogin()
                 .and().csrf().disable();
 
@@ -41,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-    public PasswordEncoder passwordEncoder(){
+    private PasswordEncoder passwordEncoder(){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }

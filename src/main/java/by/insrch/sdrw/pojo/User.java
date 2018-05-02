@@ -1,5 +1,6 @@
 package by.insrch.sdrw.pojo;
 
+import by.insrch.sdrw.service.ValidEmail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,7 +12,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@EqualsAndHashCode
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,20 +20,22 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userId")
-    private Long userId;
+    private Long id;
 
     private String name;
-    private String surname;
+ // private String surname;
     @Column(unique = true)
     private String email;
     private String password;
- //   private LocaleData birthday;
-    private boolean enabled;
-    private String phone;
-    private String address;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<UserRole> userRole = new HashSet<>(0);
+    @Transient
+    private String passwordConfirm;
+ // private LocaleData birthday;
+ // private boolean enabled;
+ // private String phone;
+ // private String address;
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @Override
     public boolean equals(Object o) {
@@ -41,23 +43,21 @@ public class User implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         User user = (User) o;
-        return enabled == user.enabled &&
-                Objects.equals(userId, user.userId) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(surname, user.surname) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(phone, user.phone) &&
-                Objects.equals(address, user.address);
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), userId, name, surname, email, password, enabled, phone, address);
+        return Objects.hash(super.hashCode(), id);
     }
-
-
-    /*@OneToMany(mappedBy = "id")
-    private Note note;*/
 }
