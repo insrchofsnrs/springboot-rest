@@ -2,7 +2,7 @@ $(document).ready(function () {
     $('#add-user').submit(function (event) {
         event.preventDefault();
         ajaxPost();
-        var words = "- Customer with Id = " + i + ", firstname = " + user.name + ", lastName = " + user.surname + "email = " + user.email + "<br>";
+        var words = "- Customer with Id = " + i + ", <b>firstname</b> = " + user.name + ", lastName = " + user.surname + "email = " + user.email + "<br>";
         $('#getResultDiv .list-group').append(words);
 
 
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 $('#getResultDiv ul').empty();
                 /*var custList = "";*/
                 $.each(data, function (i, user) {
-                    var words = "- User with Id = " + i + ", email = " + user.email + ", password = " + user.password + "name = " + user.name + "role= "+ user.role+"<br>";
+                    var words = "- User with Id = " + i + ", <b>email</b> = " + user.email + ", password = " + user.password + "name = " + user.name + "role= "+ user.role+"<br>";
                     $('#getResultDiv .list-group').append(words)
                 });
             },
