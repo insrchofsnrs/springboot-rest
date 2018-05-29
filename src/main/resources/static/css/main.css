@@ -1,0 +1,41 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background: linear-gradient(to bottom, #292929, #171717);
+
+}
+
+
+.cool {
+    font-size: 0;
+}
+
+.cool span {
+    display: inline-block;
+    font-size: 20px;
+    color: #E08700
+}
+
+.cool span.hidden {
+    transform: scale(0);
+    transform-origin: 0 center;
+    color: orange;
+    transition: all .3s;
+}
+
+
+.cool span.ea {
+    margin-right: -1.25em;
+}
+
+.cool span.u {
+    margin-right: -.74em;
+}
+
+.cool span.i {
+    margin-right: -.3em;
+}
+
+.cool:hover .hidden {
+    margin-right: 0;
+    transform: scale(1);
+}
