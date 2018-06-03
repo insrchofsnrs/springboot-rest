@@ -1,24 +1,25 @@
 package by.insrch.sdrw.controller;
-
 import by.insrch.sdrw.dao.UserRepository;
 import by.insrch.sdrw.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-public class WebController {
-@Autowired
+@RestController
+public class TestCintroller {
+    @Autowired
     UserRepository userRepository;
 
-
-    @GetMapping(value="/")
-    public String homepage(Model model){
+    @GetMapping(value = "/test")
+    public List<User> getTestList(Model model) {
+        model.addAttribute("testText", "hello");
         List<User> list = userRepository.findAll();
-        model.addAttribute("test", list);
-        return "index";
+        return list;
     }
+
+
 }

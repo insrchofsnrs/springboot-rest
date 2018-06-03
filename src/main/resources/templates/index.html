@@ -2,14 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>test</title>
-    <meta name="viewport"  http-equiv="Content-Type" content="text/html; charset=UTF-8; width=device-width"/>
+    <title>App</title>
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8; width=device-width"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-          href="css/main.css"/>
+
     <link rel="stylesheet" type="text/css"
           href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
-
+    <link rel="stylesheet" type="text/css"
+          href="css/main.css"/>
+    <script src="js/main.js"></script>
+    <script src="js/logout.js"></script>
 </head>
 
 
@@ -17,36 +19,54 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">my name</a>
+            <a class="navbar-brand" href="#">
+                <!-- INSRCHOFSNRS -->
+                <div class="cool">
+                    <span>IN</span>
+                    <span>S</span>
+                    <span class="hiddenx ea">EA</span>
+                    <span>RCHOFS</span>
+                    <span class="hiddenx u">U</span>
+                    <span>NR</span>
+                    <span class="hiddenx i">I</span>
+                    <span>S</span>
+                    <span class="hiddenx e">E</span>
+                </div>
+            </a>
         </div>
     </div>
 </nav>
+<div class="container unauthenticated">
+    With Facebook: <a href="/login">click here</a>
+</div>
+<div class="container authenticated" style="display:none">
+    Logged in as: <span id="user"></span>
+</div>
 
 
-<script src="js/main.js"></script>
+
+<p><td th:text="${test}">...</td></p>
 <table>
-    <th:block th:each="data : ${data}">
+    awdwadц
+    <th:block th:each="user : ${test}">
         <tr>
-            <td th:text="${data.name}">...</td>
-            <td th:text="${data.email}">...</td>
-        </tr>
-        <tr>
-            <td colspan="2" th:text="${users.surname}">...</td>
+            <td th:text="${user.name}">...</td>
         </tr>
     </th:block>
 </table>
-<!-- INSRCHOFSNRS -->
-<div class="cool">
-    <span>IN</span>
-    <span>S</span>
-    <span class="hidden ea">EA</span>
-    <span>RCHOFS</span>
-    <span class="hidden u">U</span>
-    <span>NR</span>
-    <span class="hidden i">I</span>
-    <span>S</span>
-    <span class="hidden e">E</span>
-</div>
+
+
+<script type="text/javascript">
+    $.get("/user", function(data) {
+        $("#user").html(data.userAuthentication.details.name);
+        $(".unauthenticated").hide()
+        $(".authenticated").show()
+    });
+</script>
+
+
+
+
 <div>
     <form class="form-inline" style="margin:20px 20px 20px 20px" id="add-user">
         <div class="form-group">

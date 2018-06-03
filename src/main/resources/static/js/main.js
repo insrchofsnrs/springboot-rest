@@ -19,7 +19,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
-                url: window.location + "api/users",
+                url: "api/users",
                 data: JSON.stringify(user),
                 dataType: 'json'
             });
@@ -41,7 +41,7 @@ $(document).ready(function () {
     function ajaxGet() {
         $.ajax({
             type: "GET",
-            url: window.location + "api/users",
+            url:"api/users",
             success: function (data) {
 
 

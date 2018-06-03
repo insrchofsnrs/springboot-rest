@@ -6,14 +6,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/")
 public class AdminController {
 
 
-    @GetMapping(value = "")
+    @GetMapping(value = "/admin")
     public String adminPage (){
         return "admin";
     }
 
+
+    @RequestMapping("/user")
+    public Principal user(Principal principal) {
+        return principal;
+    }
 }
